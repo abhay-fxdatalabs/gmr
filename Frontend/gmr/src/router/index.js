@@ -43,21 +43,21 @@ const routes = [
     component: Users,
   },
   {
-    path: '/',
-    name: 'Login',
+    path: "/",
+    name: "Login",
     component: Login,
     meta: {
-      requiresLogged: true
-    }
+      requiresLogged: true,
+    },
   },
   {
-    path: '/logout',
-    name: 'Logout',
+    path: "/logout",
+    name: "Logout",
     component: Logout,
     meta: {
-      requiresAuth: true
-    }
-  }
+      requiresAuth: true,
+    },
+  },
 ];
 
 const router = new VueRouter({

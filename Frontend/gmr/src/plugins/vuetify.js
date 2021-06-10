@@ -4,21 +4,20 @@ import Vue from "vue";
 import Vuetify from "vuetify/lib/framework";
 import colors from "vuetify/lib/util/colors";
 
-
 Vue.use(Vuetify);
 
 export default new Vuetify({
-    icons: {
-        icofont: " md" || "fa",
+  icons: {
+    icofont: " md" || "fa",
+  },
+  theme: {
+    thems: {
+      dark: {
+        background: colors.green.lighten5,
       },
-      theme: {
-        thems: {
-          dark: {
-            background: colors.green.lighten5,
-          },
-          light: {
-            background: colors.shades.white,
-          },
-        },
+      light: {
+        background: colors.shades.white,
       },
+    },
+  },
 });

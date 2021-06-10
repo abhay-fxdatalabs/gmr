@@ -1,9 +1,8 @@
 <template>
-
-<div>
-  <SideBar />
-  <h1>Model</h1>
-</div>
+  <div>
+    <SideBar />
+    <h1>Model</h1>
+  </div>
 </template>
 
 <script>

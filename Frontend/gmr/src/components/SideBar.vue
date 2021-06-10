@@ -1,103 +1,112 @@
 <template>
-   <nav>
+  <div id="app">
+    <v-app-bar app color="blue darken-4" dark>
+      <v-app-bar-nav-icon
+        @click.stop="sidebarMenu = !sidebarMenu"
+      ></v-app-bar-nav-icon>
+      <v-toolbar-title>Dashboard</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-icon>mdi-account</v-icon>
+    </v-app-bar>
     <v-navigation-drawer
       v-model="sidebarMenu"
-      dark
       app
-      mini-variant
-      mini-variant-width="200"
-      width="50%"
-      class="white"
-      style="  border: 2px solid black !important"
+      floating
+      :permanent="sidebarMenu"
+      :mini-variant.sync="mini"
+      color="white darken-4"
     >
       <v-list dense>
-        <v-list-item class="mb-12">
+        <v-list-item>
           <v-list-item-content>
-            <v-img class="mr-3" src="@/assets/img/GMR_Logo.webp"> </v-img>
+            <v-list-item-title></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <v-list flat>
-        <v-list-item router to="/home" active-class="bg-active">
+      <v-list-item class="px-2" @click="toggleMini = !toggleMini">
+        <v-list-item-avatar>
+          <v-icon>mdi-account-outline</v-icon>
+        </v-list-item-avatar>
+        <v-list-item-content class="text-truncate">
+          Carol Skelly
+        </v-list-item-content>
+        <v-btn icon small>
+          <v-icon>mdi-chevron-left</v-icon>
+        </v-btn>
+      </v-list-item>
+      <v-divider></v-divider>
+      <v-list>
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          link
+          :to="item.href"
+        >
+          <v-list-item-icon>
+            <v-icon color="primary">{{ item.icon }}</v-icon>
+          </v-list-item-icon>
           <v-list-item-content>
-            <v-icon size="40" class="mb-2" style="color:#575757 "
-              >fas fa-home
-            </v-icon>
-            <v-list-item-subtitle style="color:#575757 " align="center"
-              >Home</v-list-item-subtitle
-            >
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item router to="/dam" active-class="bg-active">
-          <v-list-item-content>
-            <v-icon class="mb-2" size="40" style="color:#575757 "
-              >fas fa-chart-line</v-icon
-            >
-            <v-list-item-subtitle align="center" style="color:#575757 "
-              >DAM</v-list-item-subtitle
-            >
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item router to="/rtm" active-class="bg-active">
-          <v-list-item-content>
-            <v-icon class="mb-2" size="40" style="color:#575757"
-              >fas fa-chart-bar</v-icon
-            >
-            <v-list-item-subtitle align="center" style="color:#575757 "
-              >RTM</v-list-item-subtitle
-            >
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item router to="/model" active-class="bg-active">
-          <v-list-item-content>
-            <v-icon class="mb-2" size="40" style="color:#575757 "
-              >fas fa-home</v-icon
-            >
-            <v-list-item-subtitle align="center" style="color:#575757 "
-              >Model</v-list-item-subtitle
-            >
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item router to="/users" active-class="bg-active">
-          <!-- <v-badge color="pink" dot overlap> -->
-          <v-list-item-content>
-            <v-icon class="mb-2" size="40" style="color:#575757 "
-              >fas fa-user</v-icon
-            >
-            <v-list-item-subtitle align="center" style="color:#575757 "
-              >Users</v-list-item-subtitle
-            >
-          </v-list-item-content>
-          <!-- </v-badge> -->
-        </v-list-item>
-        <v-list-item router to="/logout" active-class="bg-active">
-          <v-list-item-content>
-            <v-icon class="mb-2" size="40" style="color:#575757 "
-              >fas fa-sign-out-alt</v-icon
-            >
-            <v-list-item-subtitle align="center" style="color:#575757 "
-              >Logout</v-list-item-subtitle
-            >
+            <v-list-item-title class="primary--text">{{
+              item.title
+            }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-  </nav>
+    <v-content>
+      <v-container class="px-4 py-0 fill-height" fluid>
+        <v-row class="fill-height">
+          <v-col>
+            <transition name="fade">
+              <router-view></router-view>
+            </transition>
+          </v-col>
+        </v-row>
+      </v-container>
+      <v-footer app color="blue darken-4" class="py-3">
+        <span class="ml-auto overline" style="color:white"
+          >Iatek &copy;2020</span
+        >
+      </v-footer>
+    </v-content>
+  </div>
 </template>
 <script>
 export default {
   data: () => ({
     sidebarMenu: true,
+    toggleMini: false,
+    items: [
+      { title: "Home", href: "/home", icon: "mdi-home-outline" },
+      {
+        title: "DAM",
+        href: "/dam",
+        icon: "mdi-chart-line",
+      },
+      { title: "RTM", href: "/rtm", icon: "mdi-chart-bar" },
+      { title: "Model", href: "/model", icon: "mdi-alarm-light-outline" },
+
+      {
+        title: "Users",
+        href: "/users",
+        icon: "mdi-account-search-outline",
+      },
+      {
+        title: "Logout",
+        href: "/logout",
+        icon: "mdi-logout",
+      },
+    ],
   }),
+  computed: {
+    mini() {
+      return this.$vuetify.breakpoint.smAndDown || this.toggleMini;
+    },
+  },
 };
 </script>
-<style scoped>
-.bg-active {
-  background-color: #bfbfbf !important;
-  /* color: black !important; */
-}
-.bgWhite {
-  background-color: darkgrey !important;
+<style>
+.theme--dark.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
+  color: #fff !important;
 }
 </style>
