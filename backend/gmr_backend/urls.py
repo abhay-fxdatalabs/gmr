@@ -4,7 +4,7 @@ from django.urls import path
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView)
-from DjangoRestAuth.views import ModsView, register
+from .views import ModsView, register
 
 urlpatterns = [
     path('admin/', admin.site.urls),

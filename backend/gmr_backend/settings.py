@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
-    'DjangoRestAuth'
+    'gmr_backend'
 ]
 
 # added corsheaders middleware below
@@ -62,7 +62,7 @@ CORS_ALLOW_HEADERS = default_headers + (
 
 # CORS_ORIGIN_ALLOW_ALL = True
 
-ROOT_URLCONF = 'DjangoRestAuth.urls'
+ROOT_URLCONF = 'gmr_backend.urls'
 
 TEMPLATES = [
     {
@@ -80,7 +80,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'DjangoRestAuth.wsgi.application'
+WSGI_APPLICATION = 'gmr_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 

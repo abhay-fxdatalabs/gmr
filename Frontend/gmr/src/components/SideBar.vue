@@ -64,9 +64,7 @@
         </v-row>
       </v-container>
       <v-footer app color="blue darken-4" class="py-3">
-        <span class="ml-auto overline" style="color:white"
-          >Iatek &copy;2020</span
-        >
+        <span class="ml-auto overline" style="color:white">GMR &copy;2021</span>
       </v-footer>
     </v-content>
   </div>
