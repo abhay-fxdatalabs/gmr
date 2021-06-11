@@ -1,7 +1,18 @@
 from django.db import models
-from django.db import models
+
+class Iex(models.Model):
+    iex_id = models.BigAutoField(primary_key=True)
+    date = models.DateField()
+    time_Block = models.CharField(max_length=20)
+    mcp = models.FloatField()
+    mcv = models.FloatField()
+    purchase_Bid = models.FloatField()
+    sell_Bid = models.FloatField()
+    cleared_Volume = models.FloatField()
+    final_Scheduled_Volume = models.FloatField()
 
 class God(models.Model):
+    id = models.BigAutoField(primary_key=True)
     date =models.DateField()
     planned_srldc = models.IntegerField()
     forced_srldc = models.IntegerField()
@@ -16,32 +27,24 @@ class God(models.Model):
     forced_wrldc = models.IntegerField()
     total_Outage_wrldc = models.IntegerField()
 
-class Iex(models.Model):
-    date = models.DateField()
-    time_Block = models.CharField(max_length=20)
-    mcp = models.FloatField()
-    mcv = models.FloatField()
-    purchase_Bid = models.FloatField()
-    sell_Bid = models.FloatField()
-    cleared_Volume = models.FloatField()
-    final_Scheduled_Volume = models.FloatField()
-
 class Psp(models.Model):
+    psp_id = models.BigAutoField(primary_key=True)
     date = models.DateField()
     availability_erldc = models.FloatField()
     demand_Met_erldc = models.FloatField()
     shortage_erldc = models.FloatField()
-    availability_nrldc = models.FloatField
-    demand_Met_nrldc = models.FloatField
-    shortage_nrldc = models.FloatField
-    availability_srldc = models.FloatField
-    demand_Met_srldc = models.FloatField
-    shortage_srldc = models.FloatField
-    availability_wrldc = models.FloatField
-    demand_Met_wrldc = models.FloatField
-    shortage_wrldc = models.FloatField
+    availability_nrldc = models.FloatField()
+    demand_Met_nrldc = models.FloatField()
+    shortage_nrldc = models.FloatField()
+    availability_srldc = models.FloatField()
+    demand_Met_srldc = models.FloatField()
+    shortage_srldc = models.FloatField()
+    availability_wrldc = models.FloatField()
+    demand_Met_wrldc = models.FloatField()
+    shortage_wrldc = models.FloatField()
 
 class Dsm(models.Model):
+    dsm_id = models.BigAutoField(primary_key=True)
     date = models.DateField()
     freq_below = models.FloatField()
     freq_not_below = models.FloatField()
@@ -59,3 +62,29 @@ class Dsm(models.Model):
     W2 = models.FloatField()
     W3 = models.FloatField()
     inter_regional = models.FloatField()
+
+class Model_DAM(models.Model):
+    model_id = models.BigAutoField(primary_key=True)
+    name = models.CharField(max_length=10)
+
+class Model_accuracy(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    date = models.DateField()
+    model = models.ForeignKey(Model_DAM, on_delete=models.CASCADE)
+    type = models.CharField(max_length=50)
+    below_85 = models.FloatField()
+    between_85_90 = models.FloatField()
+    between_90_95 = models.FloatField()
+    between_95_98 = models.FloatField()
+    between_98_100 = models.FloatField()
+    between_100_105 = models.FloatField()
+    between_105_110 = models.FloatField()
+    above_110 = models.FloatField()
+    total_blocks = models.FloatField()
+
+class Model_predictions(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    date = models.DateField()
+    model = models.ForeignKey(Model_DAM, on_delete=models.CASCADE)
+    block_id = models.IntegerField()
+    prediction = models.FloatField()

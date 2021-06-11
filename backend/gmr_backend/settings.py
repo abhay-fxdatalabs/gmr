@@ -85,10 +85,21 @@ WSGI_APPLICATION = 'gmr_backend.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 # **Don't forget to enter your database details below
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'gmrDB',
+        'USER': 'gmr',
+        'PASSWORD': 'Gmr@123',
+        'HOST': '127.0.0.1',
+        'PORT': '3306'
     }
 }
 
