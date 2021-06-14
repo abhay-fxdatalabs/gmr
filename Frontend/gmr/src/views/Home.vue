@@ -18,9 +18,6 @@
           >
             <template v-slot:label="item"> ${{ item.value }} </template>
           </v-sparkline>
-          <v-card-actions class="py-4 justify-center">
-            <v-btn color="primary" to="/reports">View Report</v-btn>
-          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
