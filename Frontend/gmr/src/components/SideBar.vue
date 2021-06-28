@@ -14,7 +14,7 @@
       floating
       :permanent="sidebarMenu"
       :mini-variant.sync="mini"
-      color="white darken-4"
+      color="#002b49"
     >
       <v-list dense>
         <v-list-item>
@@ -23,17 +23,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <v-list-item class="px-2" @click="toggleMini = !toggleMini">
-        <v-list-item-avatar>
-          <v-icon>mdi-account-outline</v-icon>
-        </v-list-item-avatar>
-        <v-list-item-content class="text-truncate">
-          Carol Skelly
-        </v-list-item-content>
-        <v-btn icon small>
-          <v-icon>mdi-chevron-left</v-icon>
-        </v-btn>
-      </v-list-item>
+
       <v-divider></v-divider>
       <v-list>
         <v-list-item
@@ -43,7 +33,7 @@
           :to="item.href"
         >
           <v-list-item-icon>
-            <v-icon color="primary">{{ item.icon }}</v-icon>
+            <v-icon color="#fff">{{ item.icon }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title class="primary--text">{{
@@ -104,7 +94,7 @@ export default {
 };
 </script>
 <style>
-.theme--dark.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
-  color: #fff !important;
+.primary--text {
+  color: "#fff" !important;
 }
 </style>

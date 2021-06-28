@@ -4,6 +4,8 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import VueApexCharts from "vue-apexcharts";
+
+import axios from "axios";
 Vue.use(VueApexCharts);
 Vue.component("apexchart", VueApexCharts);
 
@@ -15,3 +17,5 @@ new Vue({
   vuetify,
   render: (h) => h(App),
 }).$mount("#app");
+
+Vue.prototype.$axios = axios;
